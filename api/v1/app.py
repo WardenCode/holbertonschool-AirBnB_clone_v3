@@ -1,18 +1,24 @@
 #!/usr/bin/python3
-""""""
+"""Main Flask App"""
 from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
 from os import getenv
+
 
 app = Flask(__name__)
 
 app.register_blueprint(app_views)
 
+CORS(app, resources={r"/*": {"origins": '0.0.0.0'}})
+
+
 @app.errorhandler(404)
 def not_found(e):
     """returns a JSON"reponse if there is an error 404"""
     return jsonify({'error': 'Not found'})
+
 
 @app.teardown_appcontext
 def close_session(self):
@@ -29,4 +35,4 @@ if (__name__ == "__main__"):
     if (not port):
         port = '5000'
 
-    app.run(host=ip, port=port, threaded=True, debug=True) # Remove debug
+    app.run(host=ip, port=port, threaded=True, debug=True)  # Remove debug
