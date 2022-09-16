@@ -16,8 +16,6 @@ def get_cities_from_state(state_id):
         abort(404)
 
     cities = state.cities
-    if (cities == []):
-        abort(404)
 
     result = [city.to_dict() for city in cities]
 
