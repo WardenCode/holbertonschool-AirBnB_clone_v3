@@ -13,7 +13,7 @@ from models import storage
 
 @app_views.route('/status')
 def status():
-    """"""
+    """Return the status of the HTPP request"""
     obj_res = {
         "status": "OK"
     }
@@ -23,7 +23,7 @@ def status():
 
 @app_views.route('/stats')
 def stats():
-    """retrieves the number of each objects type"""
+    """Retrieves the number of each objects type"""
     obj_res = {
         "amenities": storage.count(Amenity),
         "cities": storage.count(City),
