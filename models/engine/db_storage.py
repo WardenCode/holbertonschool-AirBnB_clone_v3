@@ -10,7 +10,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
-from os import getenv
+from os import abort, getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
@@ -82,7 +82,7 @@ class DBStorage:
             class_name = cls.__name__
             key = '{}.{}'.format(class_name, id)
 
-            return (result[key])
+            return (result.get(key, None))
         return (None)
 
     def count(self, cls=None):
