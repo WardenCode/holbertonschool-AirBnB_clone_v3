@@ -17,7 +17,7 @@ CORS(app, resources={r"/*": {"origins": '0.0.0.0'}})
 @app.errorhandler(404)
 def not_found(e):
     """returns a JSON"reponse if there is an error 404"""
-    return jsonify({'error': 'Not found'})
+    return jsonify({'error': 'Not found'}), 404
 
 
 @app.teardown_appcontext
